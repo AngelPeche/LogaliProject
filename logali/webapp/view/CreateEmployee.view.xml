@@ -1,0 +1,189 @@
+<mvc:View controllerName="logali.logali.controller.CreateEmployee"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	
+	xmlns:up="sap.m.upload"
+    xmlns="sap.m">
+	<NavContainer id="wizardNavContainer">
+		<pages>
+			<Page id="wizardContentPage" showHeader="true" title="{i18n>commonDescrTile1}" titleAlignment="Center" showFooter="true" showNavButton="false">
+				<content>
+						<Wizard id="CreateEmployee" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" navigationChange="handleNavigationChange"
+								complete="wizardCompletedHandler">
+							<WizardStep id="TypeStep"
+										title="{i18n>StepTitle1}"
+										validated="true">
+								<MessageStrip id="_IDGenMessageStrip1" class="sapUiSmallMarginBottom"
+										text="{i18n>MessageStep1}"
+										showIcon="true"/>
+								<HBox id="_IDGenHBox1"
+										alignItems="Center"
+										justifyContent="Center"
+										width="100%">
+									<SegmentedButton id="_IDGenSegmentedButton1"
+										width="350px"
+										selectionChange="onSetTypeEmployee">
+										<items>
+											<SegmentedButtonItem key="{i18n>StepButton1}" id="IDButtonItem1" icon="sap-icon://person-placeholder" text="{i18n>StepButton1}" press="onDialogNextButton"/>
+											<SegmentedButtonItem key="{i18n>StepButton2}" id="IDButtonItem2" icon="sap-icon://personnel-view" text="{i18n>StepButton2}" press="onDialogNextButton" />
+											<SegmentedButtonItem key="{i18n>StepButton3}" id="IDButtonItem3" icon="sap-icon://employee" text="{i18n>StepButton3}" press="onDialogNextButton"/>
+										</items>
+									</SegmentedButton>
+								</HBox>
+							</WizardStep>
+							<WizardStep id="EmployeeStep"
+										validated="true"
+										title="{i18n>StepTitle2}"
+										activate="addInfoEmployee">
+								<MessageStrip id="_IDGenMessageStrip2" class="sapUiSmallMarginBottom"
+										text="{i18n>MessageStep2}"
+										showIcon="true"/>
+								<l:VerticalLayout class="sapUiContentPadding" width="100%">
+								<form:SimpleForm id="_IDGenSimpleForm1"
+										editable="true">
+									<Label id="_IDGenLabel1" text="{i18n>Step2Label1}" required="true"/>
+									<Input valueStateText="Enter 6 symbols or more"
+											valueState="{/productNameState}" id="idInpNombre" liveChange="addInfoEmployee"
+											placeholder="Ingrese {i18n>Step2Label1}" value="{/productName}"/>
+									<Label id="_IDGenLabel2" text="{i18n>Step2Label2}" required="true"/>
+									<Input valueStateText="Enter digits"
+											valueState="{/productWeightState}" id="idInpApellido"
+											liveChange="addInfoEmployee" placeholder="Ingrese {i18n>Step2Label2}"
+											value="{/productWeight}"/>
+									<Label id="_IDGenLabel3" text="{i18n>Step2Label3}" required="true" visible="false"/>
+									<Input valueStateText="Enter digits"
+											valueState="{/productWeightState}" id="idInpCIF" visible="false"
+											liveChange="addInfoEmployee" type="Number" placeholder="Ingrese {i18n>Step2Label3}"
+											value="{/productWeight}"/>
+									<Label id="_IDGenLabel8" text="{i18n>Step2Label6}" required="true"/>
+									<Input valueStateText="Enter digits"
+											valueState="{/productWeightState}" id="idInpDNI"
+											liveChange="addInfoEmployee" type="Number" placeholder="Ingrese {i18n>Step2Label6}"
+											value="{/productWeight}"/>
+									<Label id="_IDGenLabel4" text="{i18n>Step2Label4}"/>
+									<!--<RangeSlider id="_IDGenRangeSlider1" width="80%" class="sapUiTinyMargin" change="handleChange" min="100" max="200" step="10" showTickmarks="true"></RangeSlider>-->
+									<RangeSlider id="_IDGenRangeSlider1" showAdvancedTooltip="true" enableTickmarks="true" min="100" max="2000" step="100" class="sapUiLargeMarginBottom" />
+									<!--<a:RangeSlider showAdvancedTooltip="true" range="{/RS5}" min="0" max="500" width="100%" class="sapUiLargeMarginBottom" />-->
+									<Label id="_IDGenLabel5" text="{i18n>Step2Label5}" required=""/>
+									<Input valueStateText="Enter digits"
+											valueState="{/productWeightState}" id="idInpFecha"
+											liveChange="addInfoEmployee" type="Number" placeholder="Ingrese {i18n>Step2Label5}"
+											value="{/productWeight}"/>
+								</form:SimpleForm>
+								</l:VerticalLayout>
+							</WizardStep>
+							
+							<WizardStep id="InfoStep"
+										activate="pricingActivate"
+										complete="pricingComplete"
+										validated="true"
+										title="{i18n>StepTitle3}">
+								<MessageStrip id="_IDGenMessageStrip3" class="sapUiSmallMarginBottom"
+										text="{i18n>MessageStep3}"
+										showIcon="true"/>
+								<form:SimpleForm id="_IDGenSimpleForm2"
+										editable="true">
+										<Label id="_IDGenLabel6" text="{i18n>NewComentario}" class="sapUiSmallMarginBottom"/>
+										<TextArea id="idTexAComentario" placeholder="Ingrese Comentario..." rows="3" cols="100" maxLength="255" wrapping="None" enabled="true" required="false" valueStateText="Invalid entry" visible="true"/>
+										<Label id="_IDGenLabel7"/>
+										<up:UploadSet id="attachmentUpl" instantUpload="false" maxFileSize="2" noDataDescription="" noDataText="" selectionChanged="onSelectionChangeAttachment"
+										uploadCompleted="onUploadCompleted" uploadUrl="/sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments" visible="true">
+											<up:toolbar>
+												<OverflowToolbar>
+													<!--<CheckBox id="checkbox" select="onSelectAllAttachments" visible="false" />-->
+													<!--<Button id="upload" enabled="true" text="asd" press="onStartUpload" type="Transparent" visible="true" />-->
+													<!--<Button id="remove" enabled="false" icon="sap-icon://delete" press="onRemove" type="Transparent" visible="true" />
+													<Button id="download" enabled="false" icon="sap-icon://download" press="onDownload" type="Transparent" visible="true" />-->
+												</OverflowToolbar>
+											</up:toolbar>
+										</up:UploadSet>
+								</form:SimpleForm>
+							</WizardStep>
+						</Wizard>
+					</content>
+					<footer>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button text="Cancel" press="onNavBack"/>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+				<Page id="wizardReviewPage" showHeader="false">
+					<content>
+						<form:SimpleForm
+								title="1. {i18n>StepTitle1}"
+								minWidth="1024"
+								editable="false"
+								layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="{i18n>Step1Label1}"/>
+								<Text id="ProductTypeChosen" text="{/tipo}"/>
+								<Link press="editStepOne" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+						<form:SimpleForm
+								title="2. {i18n>StepTitle2}"
+								minWidth="1034"
+								editable="false"
+								layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="{i18n>Step2Label1}"/>
+								<Text id="ProductNameChosen" text="{/nombre}"/>
+								<Label text="{i18n>Step2Label2}"/>
+								<Text id="ProductWeightChosen" text="{/productWeight}"/>
+								<Label text="{i18n>Step2Label3}"/>
+								<Text id="ProductManufacturerChosen" text="{/productManufacturer}"/>
+								<Label text="{i18n>Step2Label4}"/>
+								<Text id="ProductDescriptionChosen" text="{/productDescription}"/>
+								<Label text="{i18n>Step2Label5}"/>
+								<Text id="ProductDescriptionChosen2" text="{/productDescription}"/>
+								<Link press="editStepTwo" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+						<form:SimpleForm
+								title="3. {i18n>StepTitle3}"
+								minWidth="1024"
+								editable="false"
+								layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="{i18n>Step3Label1}"/>
+								<Text text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. "/>
+								<Label text="{i18n>Step3Label2}"/>
+								<Text id="ManufacturingDate" text="{/manufacturingDate}"/>
+								<Label text="{i18n>Step3Label3}"/>
+								<Text id="ManufacturingDate2" text="{/manufacturingDate}"/>
+								<Link press="editStepThree" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+						
+					</content>
+				<!--<footer>
+					<OverflowToolbar id="idOverToolEmployee" width="100%" height="46px" design="Auto" enabled="true" visible="true">
+						<content>
+							<ToolbarSpacer id="idToolbarEmployee" width=""/>
+							<Button id="idSaveEmployee" text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press=""/>
+							<Button id="idCancelEmployee" text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onNavBack"/>
+						</content>
+					</OverflowToolbar>
+				</footer>-->
+				<footer>
+						<Bar id="_IDGenBar1">
+							<contentRight>
+								<Button id="idSaveEmployee" text="Submit" press="onSaveEmployee"/>
+								<Button id="idCancelEmployee" text="Cancel" press="onNavBack"/>
+							</contentRight>
+						</Bar>
+					</footer>
+				<headerContent/>
+				<subHeader/>
+				<customHeader/>
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

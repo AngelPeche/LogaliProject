@@ -1,0 +1,41 @@
+<mvc:View controllerName="logali.logali.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="idMainPage" showHeader="true" title="{i18n>title}" titleAlignment="Center" showFooter="true" showNavButton="false">
+        <content>
+            <Panel id="idPanelEmployee" height="auto" width="100%" headerText="{i18n>commonTileEmpl}" expandable="true" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                <content>
+                    <GenericTile id="idTile1" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header=""
+                         press="onNavigate('CreateEmployee')">
+                        <TileContent id="idContent1" footer="{i18n>commonDescrTile1}">
+                            <ImageContent id="idImgContent1" src="sap-icon://add-employee" />
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile id="idTile2" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header=""
+                         press="onNavigate('ViewEmployee')">
+                        <TileContent id="idContent2" footer="{i18n>commonDescrTile2}">
+                            <ImageContent id="idImgContent2" src="sap-icon://employee-lookup" />
+                        </TileContent>
+                    </GenericTile>
+                </content>
+            </Panel>
+            <Panel id="idPanelPedidos" height="auto" width="100%" headerText="{i18n>commonTilePed}" expandable="true" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                <content>
+                    <GenericTile id="idTile3" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="" press="onAfterRendering"
+                          url="https://19eb6201trial-dev-master-project-approuter.cfapps.us10-001.hana.ondemand.com" >
+                        <TileContent id="idContent3" footer="{i18n>commonDescrTile3}">
+                            <ImageContent id="idImgContent3" src="sap-icon://home-share" />
+                        </TileContent>
+                    </GenericTile>
+                </content>
+            </Panel>
+        </content>
+        <footer>
+        
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>
